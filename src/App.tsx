@@ -56,12 +56,22 @@ function App() {
     );
   };
   return (
-    <div className="w-screen h-screen">
+    <div
+      className={`relative w-screen h-screen ${
+        darkMode ? "bg-[#000000]" : "bg-[#FFFFFF]"
+      }`}
+    >
       <div
-        className={`flex flex-col w-full h-full py-[50px] items-center space-y-[50px] overflow-auto ${
-          darkMode ? "bg-[#000000]" : "bg-[#FFFFFF]"
+        className={`absolute right-4 top-4 text-sm font-dm font-bold cursor-pointer ${
+          darkMode ? "text-[#FFFFFF]" : "text-[#000000]"
         }`}
+        onClick={() => {
+          setDarkMode((pre) => !pre);
+        }}
       >
+        switch mode
+      </div>
+      <div className="flex flex-col w-full h-full py-[50px] items-center space-y-[50px] overflow-auto">
         <div
           className={`text-[50px] font-bold leading-[auto] tracking-[-0.02em] font-dm ${
             darkMode ? "text-[#2FC1FF]" : "text-[#8800C8]"
@@ -73,10 +83,7 @@ function App() {
           {questions.map((item) => (
             <QuestionBar
               key={item.id}
-              id={item.id}
-              content={item.question}
-              answer={item.answer}
-              selected={item.selected}
+              questionItem={item}
               handleExpand={handleExpand}
               darkMode={darkMode}
             />
@@ -88,14 +95,12 @@ function App() {
 }
 
 const QuestionBar = (props: {
-  id: number;
-  content: string;
-  answer: string;
-  selected: boolean;
+  questionItem: any;
   darkMode: boolean;
   handleExpand: (id: number) => void;
 }) => {
-  const { id, content, answer, selected, handleExpand, darkMode } = props;
+  const { handleExpand, darkMode, questionItem } = props;
+  const { id, question, answer, selected } = questionItem;
   return (
     <div className="flex flex-col w-[70%]">
       {id === 1 && <div className="w-full h-px bg-[#CDCDCD]"></div>}
@@ -106,7 +111,7 @@ const QuestionBar = (props: {
               darkMode ? "text-[#FFFFFF]" : "text-[#000000]"
             }`}
           >
-            {content}
+            {question}
           </div>
           <div
             className="cursor-pointer"
