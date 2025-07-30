@@ -43,7 +43,7 @@ const question = [
 
 function App() {
   const [questions, setQuestions] = useState(question);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleExpand = (id: number) => {
     setQuestions((pre: any) =>
@@ -73,7 +73,7 @@ function App() {
       </div>
       <div className="flex flex-col w-full h-full py-[50px] items-center space-y-[50px] overflow-auto">
         <div
-          className={`text-[50px] font-bold leading-[auto] tracking-[-0.02em] font-dm ${
+          className={`text-[30px] sm:text-[50px] font-bold tracking-[-0.02em] text-center font-dm ${
             darkMode ? "text-[#2FC1FF]" : "text-[#8800C8]"
           }`}
         >
@@ -102,12 +102,12 @@ const QuestionBar = (props: {
   const { handleExpand, darkMode, questionItem } = props;
   const { id, question, answer, selected } = questionItem;
   return (
-    <div className="flex flex-col w-[70%]">
+    <div className="flex flex-col w-[80%] sm:w-[70%]">
       {id === 1 && <div className="w-full h-px bg-[#CDCDCD]"></div>}
       <div className="flex flex-col w-full py-[15px] space-y-[20px] px-[4px]">
         <div className="flex flex-row justify-between items-center w-full">
           <div
-            className={`text-[30px] leading-[auto] font-bold ${
+            className={`text-[20px] sm:text-[30px] leading-[auto] font-bold pr-[5px] ${
               darkMode ? "text-[#FFFFFF]" : "text-[#000000]"
             }`}
           >
@@ -122,15 +122,17 @@ const QuestionBar = (props: {
             <img
               src={selected ? CloseIcon : AddIcon}
               alt=""
-              width={20}
-              height={20}
-              className={`${darkMode ? "filter invert" : ""}`}
+              // width={20}
+              // height={20}
+              className={`${
+                darkMode ? "filter invert" : ""
+              } w-7 h-7 sm:w-5 sm:h-5`}
             />
           </div>
         </div>
         {selected && (
           <div
-            className={`font-dm text-[22px] font-normal tracking-[-0.02em] w-[90%] ${
+            className={`font-dm text-[10px] sm:text-[22px] font-normal tracking-[-0.02em] w-[90%] ${
               darkMode ? "text-[#FFFFFF]" : "text-[#000000]"
             }`}
           >
