@@ -71,15 +71,15 @@ function App() {
       >
         switch mode
       </div>
-      <div className="flex flex-col w-full h-full py-[50px] items-center space-y-[50px] overflow-auto">
+      <div className="flex flex-col w-full h-full py-[55px] items-center overflow-auto">
         <div
-          className={`text-[30px] sm:text-[50px] font-bold tracking-[-0.02em] text-center font-dm ${
+          className={`text-[30px] sm:text-[50px] font-bold tracking-[-0.02em] text-center font-dm px-[20px] ${
             darkMode ? "text-[#2FC1FF]" : "text-[#8800C8]"
-          }`}
+          } leading-none`}
         >
           Frequently asked questions
         </div>
-        <div className="flex flex-col w-full items-center">
+        <div className="flex flex-col w-full items-center mt-[60px]">
           {questions.map((item) => (
             <QuestionBar
               key={item.id}
@@ -122,8 +122,6 @@ const QuestionBar = (props: {
             <img
               src={selected ? CloseIcon : AddIcon}
               alt=""
-              // width={20}
-              // height={20}
               className={`${
                 darkMode ? "filter invert" : ""
               } w-7 h-7 sm:w-5 sm:h-5`}
